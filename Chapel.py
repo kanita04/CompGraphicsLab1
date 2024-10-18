@@ -6,7 +6,7 @@ ctx = cairo.Context(surface)
 ctx.set_source_rgb(0.8,0.8,0.8)
 ctx.paint()
 
-ctx.set_line_width(0.2)
+ctx.set_line_width(2)
 
 # The part below the cross
 ctx.move_to(180, 90)
@@ -24,13 +24,7 @@ ctx.line_to(190, 50)
 ctx.set_source_rgb(0, 0, 0)
 ctx.fill()
 
-# The cross
-ctx.move_to(195, 50)
-ctx.line_to(195, 15)
-ctx.move_to(185, 25)
-ctx.line_to(205, 25)
-ctx.set_source_rgb(0, 0, 0)
-ctx.stroke()
+
 
 # the bar below the cross
 ctx.rectangle(160, 91, 70, 9)
@@ -160,7 +154,7 @@ ctx.fill_preserve()
 ctx.set_source_rgb(1,1,1)
 ctx.stroke()
 
-# Doors
+ #Doors
 ctx.rectangle(163, 220, 30, 47)
 ctx.rectangle(194, 220, 30, 47)
 ctx.fill()
@@ -184,15 +178,20 @@ ctx.set_line_width(1)
 ctx.fill_preserve()
 ctx.stroke()
 
-ctx.move_to(180, 120)
-ctx.line_to(180, 147)
-ctx.line_to(210, 147)
-ctx.line_to(210, 120)
-ctx.arc(195, 120, 15, math.pi, 0)
+ctx.rectangle(182.5, 120, 25,27)
+ctx.arc(195, 120, 13, math.pi, 0)
 ctx.set_source_rgb(1, 1, 1 )
-ctx.set_line_width(0.2)
+ctx.set_line_width(0.5)
 ctx.fill_preserve()
 ctx.stroke()
 
+# The cross
+ctx.set_line_width(5)
+ctx.move_to(195, 50)
+ctx.line_to(195, 15)
+ctx.move_to(185, 25)
+ctx.line_to(205, 25)
+ctx.set_source_rgb(0, 0, 0)
+ctx.stroke()
 
-surface.write_to_png('chapel_drawing.png')
+surface.write_to_png('lab2.png')
