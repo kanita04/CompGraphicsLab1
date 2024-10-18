@@ -1,199 +1,87 @@
 import cairo
-import math
 
-surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, 400, 300)
-ctx = cairo.Context(surface)
-ctx.set_source_rgb(0.8,0.8,0.8)
-ctx.paint()
+# Set up the surface and context for drawing
+WIDTH, HEIGHT = 600, 600
+surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, WIDTH, HEIGHT)
+context = cairo.Context(surface)
 
-ctx.set_line_width(2)
+# Set background color (white)
+context.set_source_rgb(1, 1, 1)  # RGB values for white
+context.paint()  # Fill the background with white
 
-# The part below the cross
-ctx.move_to(180, 90)
-ctx.line_to(210, 90)
-ctx.line_to(200, 50)
-ctx.line_to(190, 50)
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill()
+# Set drawing color to black
+context.set_source_rgb(0, 0, 0)
 
-# Joinin the two parts
-ctx.move_to(190, 50)
-ctx.line_to(200, 50)
-ctx.line_to(195, 40)
-ctx.line_to(190, 50)
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill()
+# Step 1: Draw the main building (rectangle)
+context.rectangle(200, 250, 200, 150)  # Main building at (200, 250) with width=200, height=150
+context.fill()
 
-# The cross
-ctx.move_to(195, 50)
-ctx.line_to(195, 15)
-ctx.move_to(185, 25)
-ctx.line_to(205, 25)
-ctx.set_source_rgb(0, 0, 0)
-ctx.stroke()
+# Step 2: Draw the left wing (rectangle)
+context.rectangle(100, 300, 100, 100)  # Left wing at (100, 300) with width=100, height=100
+context.fill()
 
-# the bar below the cross
-ctx.rectangle(160, 91, 70, 9)
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1, 1, 1)
-ctx.stroke()
+# Step 4: Draw the roof for the main building (triangle)
+context.move_to(190, 250)  # Left bottom corner of the roof
+context.line_to(410, 250)  # Right bottom corner of the roof
+context.line_to(300, 150)  # Top of the roof
+context.close_path()  # Close the path to form a triangle
+context.fill()
 
+# Step 5: Draw the left wing roof (triangle)
+context.move_to(90, 300)  # Left bottom corner of the left wing roof
+context.line_to(210, 300)  # Right bottom corner of the left wing roof
+context.line_to(150, 250)  # Top of the left wing roof
+context.close_path()  # Close the path to form a triangle
+context.fill()
 
-#Shell
-#side rects
-ctx.rectangle(50, 220, 80, 40)
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1, 1, 1)
-ctx.stroke()
-ctx.rectangle(260, 220, 80, 40)
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1, 1, 1)
-ctx.stroke()
+# Step 6: Draw the right wing roof (triangle)
+context.move_to(390, 300)  # Left bottom corner of the right wing roof
+context.line_to(510, 300)  # Right bottom corner of the right wing roof
+context.line_to(450, 250)  # Top of the right wing roof
+context.close_path()  # Close the path to form a triangle
+context.fill()
 
-#small white
-ctx.rectangle(60, 230, 20, 15)
-ctx.set_source_rgb(1, 1, 1)
-ctx.fill()
-ctx.rectangle(90, 230, 20, 15)
-ctx.set_source_rgb(1, 1, 1)
-ctx.fill()
-ctx.rectangle(280, 230, 20, 15)
-ctx.set_source_rgb(1, 1, 1)
-ctx.fill()
-ctx.rectangle(310, 230, 20, 15)
-ctx.set_source_rgb(1, 1, 1)
-ctx.fill()
+# Step 7: Draw the entrance gable (triangle)
+context.move_to(240, 330)  # Bottom left corner of the gable
+context.line_to(360, 330)  # Bottom right corner of the gable
+context.line_to(300, 270)  # Top of the gable (center)
+context.close_path()
+context.fill()
 
-#trapeziums
-ctx.move_to(80, 190)
-ctx.line_to(130, 190)
-ctx.line_to(130, 220)
-ctx.line_to(40, 220)
-ctx.close_path()
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1, 1, 1)
-ctx.stroke()
+# Step 8: Draw the door (arch + rectangle)
+context.arc(300, 360, 40, 3.14, 2 * 3.14159)  # Draw the arch at (300, 360) with radius=40
+context.fill()  # Fill the door's arch
+context.rectangle(260, 360, 80, 40)  # Draw the door's rectangle
+context.fill()
 
-ctx.move_to(260, 190)
-ctx.line_to(310, 190)
-ctx.line_to(350, 220)
-ctx.line_to(260, 220)
-ctx.close_path()
-ctx.set_source_rgb(0, 0, 0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1, 1, 1)
-ctx.stroke()
+# Step 9: Draw the circular window above the door
+context.arc(300, 240, 15, 0, 2 * 3.14159)  # Draw the circle at (300, 240) with radius=15
+context.fill()
 
-#Center
-ctx.move_to(130, 170)
-ctx.line_to(130, 270)
-ctx.line_to(260, 270)
-ctx.line_to(260, 170)
-ctx.set_source_rgb(0,0,0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1,1,1)
-ctx.stroke()
+# Step 10: Draw the windows on the left wing
+context.set_source_rgb(1, 1, 1)  # Set color to white for windows
+context.rectangle(120, 330, 25, 30)  # Left wing window 1
+context.fill()
+context.rectangle(155, 330, 25, 30)  # Left wing window 2
+context.fill()
 
-ctx.rectangle(160, 220, 34, 47)
-ctx.rectangle(196, 220, 34, 47)
-ctx.fill()
+# Step 11: Draw the windows on the right wing
+context.rectangle(420, 330, 25, 30)  # Right wing window 1
+context.fill()
+context.rectangle(455, 330, 25, 30)  # Right wing window 2
+context.fill()
 
-ctx.move_to(160, 220)
-ctx.curve_to(170, 210, 180, 210, 194, 210)
-ctx.line_to(194, 220)
-ctx.close_path()
-ctx.fill()
+# Step 12: Draw the tower on top of the building
+context.set_source_rgb(0, 0, 0)  # Set color back to black
+context.rectangle(270, 170, 60, 80)  # Tower rectangle
+context.fill()
 
-ctx.move_to(196, 210)
-ctx.curve_to(210, 210, 220, 210, 229, 220)
-ctx.line_to(196, 220)
-ctx.close_path()
-ctx.fill()
+# Step 13: Draw the cross on top of the tower
+context.rectangle(295, 90, 10, 60)  # Vertical part of the cross
+context.fill()
+context.rectangle(280, 110, 40, 10)  # Horizontal part of the cross
+context.fill()
 
-# Structure of center block
-ctx.move_to(130, 170)
-ctx.line_to(130, 270)
-ctx.line_to(260, 270)
-ctx.line_to(260, 170)
-ctx.line_to(240, 160)
-ctx.line_to(150, 160)
-ctx.close_path()
-ctx.set_source_rgb(0,0,0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1,1,1)
-ctx.stroke()
-
-# Structure of center roof
-ctx.move_to(120, 180)
-ctx.line_to(150, 160)
-ctx.line_to(240, 160)
-ctx.line_to(270, 180)
-ctx.line_to(270, 170)
-ctx.line_to(240, 150)
-ctx.line_to(150, 150)
-ctx.line_to(120, 170)
-ctx.close_path()
-ctx.set_source_rgb(0,0,0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1,1,1)
-ctx.stroke()
-
-# Center block window
-ctx.arc(195, 175, 10, math.radians(0), math.radians(360))
-ctx.set_source_rgb(1,1,1)
-ctx.fill()
-
-# Roof above the door
-ctx.move_to(150, 220)
-ctx.line_to(195, 200)
-ctx.line_to(240, 220)
-ctx.line_to(240, 210)
-ctx.line_to(195, 190)
-ctx.line_to(150, 210)
-ctx.close_path()
-ctx.set_source_rgb(0,0,0)
-ctx.fill_preserve()
-ctx.set_source_rgb(1,1,1)
-ctx.stroke()
-
-# Doors
-ctx.rectangle(160, 220, 34, 47)
-ctx.rectangle(196, 220, 34, 47)
-ctx.fill()
-
-
-ctx.move_to(160, 220)
-ctx.curve_to(170, 210, 180, 210, 194, 210)
-ctx.line_to(194, 220)
-ctx.close_path()
-ctx.fill()
-
-ctx.move_to(196, 210)
-ctx.curve_to(210, 210, 220, 210, 229, 220)
-ctx.line_to(196, 220)
-ctx.close_path()
-ctx.fill()
-
-# Top part
-ctx.rectangle(170, 100, 50, 50)
-ctx.set_source_rgb(0, 0, 0)
-ctx.set_line_width(1)
-ctx.fill_preserve()
-ctx.stroke()
-
-ctx.move_to(180, 120)
-ctx.line_to(180, 147)
-ctx.line_to(210, 147)
-ctx.line_to(210, 120)
-ctx.arc(195, 120, 15, math.pi, 0)
-ctx.set_source_rgb(1, 1, 1 )
-ctx.set_line_width(1)
-ctx.fill_preserve()
-ctx.stroke()
-
-
-surface.write_to_png('lab2.png')
+# Save the drawing to a PNG file
+surface.write_to_png("chapel_with_roof_drawing.png")
+print("Drawing completed and saved as chapel_with_roof_drawing.png")
