@@ -6,7 +6,7 @@ ctx = cairo.Context(surface)
 ctx.set_source_rgb(0.8,0.8,0.8)
 ctx.paint()
 
-ctx.set_line_width(2)
+ctx.set_line_width(0.2)
 
 # The part below the cross
 ctx.move_to(180, 90)
@@ -161,12 +161,11 @@ ctx.set_source_rgb(1,1,1)
 ctx.stroke()
 
 # Doors
-ctx.rectangle(160, 220, 34, 47)
-ctx.rectangle(196, 220, 34, 47)
+ctx.rectangle(163, 220, 30, 47)
+ctx.rectangle(195, 220, 30, 47)
 ctx.fill()
 
-
-ctx.move_to(160, 220)
+ctx.move_to(163, 220)
 ctx.curve_to(170, 210, 180, 210, 194, 210)
 ctx.line_to(194, 220)
 ctx.close_path()
@@ -191,9 +190,9 @@ ctx.line_to(210, 147)
 ctx.line_to(210, 120)
 ctx.arc(195, 120, 15, math.pi, 0)
 ctx.set_source_rgb(1, 1, 1 )
-ctx.set_line_width(1)
+ctx.set_line_width(0.2)
 ctx.fill_preserve()
 ctx.stroke()
 
 
-surface.write_to_png('lab.png')
+surface.write_to_png('chapel_drawing.png')
