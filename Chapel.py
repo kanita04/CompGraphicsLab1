@@ -196,4 +196,4 @@ ctx.fill_preserve()
 ctx.stroke()
 
 
-surface.write_to_png('lab.png')
+surface.write_to_png('lab2.png')
