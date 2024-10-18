@@ -162,7 +162,7 @@ ctx.stroke()
 
 # Doors
 ctx.rectangle(163, 220, 30, 47)
-ctx.rectangle(195, 220, 30, 47)
+ctx.rectangle(194, 220, 30, 47)
 ctx.fill()
 
 ctx.move_to(163, 220)
