@@ -195,4 +195,4 @@ ctx.line_to(205, 25)
 ctx.set_source_rgb(0, 0, 0)
 ctx.stroke()
 
-surface.write_to_png('lab2.png')
+surface.write_to_png('lab.png')
