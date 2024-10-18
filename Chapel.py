@@ -20,6 +20,27 @@ context.fill()
 context.rectangle(100, 300, 100, 100)  # Left wing at (100, 300) with width=100, height=100
 context.fill()
 
+
+#parallelogram roofs
+context.move_to(150, 250)             # Move to starting point (top-left)
+context.line_to(200, 250)             # Draw the top edge (horizontal line to the right)
+context.line_to(250, 300)             # Draw the right edge (diagonal line downwards to the left)
+context.line_to(50, 300)              # Draw the bottom edge (horizontal line to the left)
+context.close_path()                  # Close the path by drawing a line back to the starting point
+context.fill()
+#context.rectangle(100, 250, 100, 100)  # Left wing at (100, 300) with width=100, height=100
+#context.fill()
+
+context.move_to(400, 250)             # Move to starting point (top-left)
+context.line_to(500, 250)             # Draw the top edge (horizontal line to the right)
+context.line_to(550, 310)             # Draw the right edge (diagonal line downwards to the right)
+context.line_to(400, 310)             # Draw the bottom edge (horizontal line to the left)
+context.close_path()                  # Close the path by drawing a line back to the starting point
+context.fill()
+
+
+
+
 # Step 3: Draw the right wing (rectangle)
 context.rectangle(400, 300, 100, 100)  # Right wing at (400, 300) with width=100, height=100
 context.fill()
@@ -71,6 +92,9 @@ context.rectangle(290, 90, 20, 60)  # Vertical part of the cross
 context.fill()
 context.rectangle(280, 110, 40, 10)  # Horizontal part of the cross
 context.fill()
+
+
+
 
 # Save the drawing to a PNG file
 surface.write_to_png("chapel_drawing.png")
